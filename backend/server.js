@@ -1,11 +1,15 @@
-import express from 'express';
+import express from "express";
 
-const app =express();
+const app=express();
 
-app.get("/", (req,res) => {
-    res.send("Server is ready");
+app.use(express.json());
+app.use(express.static("C:/Users/nhcmu/project-1/frontend"));
+
+app.post("/",(req,res)=>{
+    let rep="oke "+req.body.text;
+    res.json({reply: rep});
 });
 
-app.listen(5000, () => {
-    console.log("Server started at http://localhost:5000");
+app.listen(5000,()=>{
+    console.log("running");
 });
