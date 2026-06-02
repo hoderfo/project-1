@@ -1,17 +1,40 @@
-const button=document.getElementById("submit");
-const text=document.getElementById("text");
-const result=document.getElementById("result");
+let editor;
+require.config({
+    paths: {
+        vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs'
+    }
+});
+require(
+    ['vs/editor/editor.main'],
+    function () {
+        editor = monaco.editor.create(
+            document.getElementById('editor'),
+            {
+                value:'',
+                language: 'python',
+                theme: 'vs-dark',
+                automaticLayout: true
+            }
+        );
 
-button.addEventListener("click", async ()=> {
+    }
+);
+
+async function runCode() {
+    const code = editor.getValue();
     const response = await fetch(
-        "/",
+        "http://127.0.0.1:8000/run",
         {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
-                text: text.value
+                code: code
             })
-        });
+        }
+    );
     const data = await response.json();
-    result.innerText = data.reply;
-});
+    document.getElementById("output").textContent =
+        data.output || data.error;
+}

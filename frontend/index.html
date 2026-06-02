@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 20px;
+        }
+        #editor {
+            height: 400px;
+            border: 1px solid black;
+        }
+        #output {
+            margin-top: 20px;
+            border: 1px solid black;
+            min-height: 100px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
 <body>
-    <textarea id="text"></textarea>
-    <button id="submit">
-        Submit
+    <h2>Online Code Runner</h2>
+    <div id="editor"></div>
+    <br>
+    <button onclick="runCode()">
+        Run
     </button>
-    <p id="result"></p>
+    <h3>Output</h3>
+    <pre id="output"></pre>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
     <script src="index.js"></script>
+
 </body>
+
 </html>
