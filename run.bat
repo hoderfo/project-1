@@ -1,11 +1,7 @@
 @echo off
 
-start cmd /k "cd backend && uvicorn main:app --reload"
+start cmd /c "cd backend && uvicorn main:app --reload"
 
-timeout /t 2 > nul
+start cmd /c "cd frontend && python -m http.server 4321"
 
-start cmd /k "cd frontend && python -m http.server 3000"
-
-timeout /t 2 > nul
-
-start http://localhost:3000
+start http://localhost:4321

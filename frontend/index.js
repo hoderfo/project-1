@@ -12,7 +12,7 @@ require(
             {
                 value:'',
                 language: 'python',
-                theme: 'vs-dark',
+                theme: 'vs-light',
                 automaticLayout: true
             }
         );
@@ -23,18 +23,14 @@ require(
 async function runCode() {
     const code = editor.getValue();
     const response = await fetch(
-        "http://127.0.0.1:8000/run",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                code: code
-            })
-        }
-    );
+    "http://127.0.0.1:8000/run",
+    {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            code: editor.getValue(),
+            stdin: document.getElementById("stdin").value})
+    });
     const data = await response.json();
-    document.getElementById("output").textContent =
-        data.output || data.error;
+    document.getElementById("output").textContent = data.output || data.error;
 }
