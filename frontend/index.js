@@ -10,27 +10,31 @@ require(
         editor = monaco.editor.create(
             document.getElementById('editor'),
             {
-                value:'',
-                language: 'python',
+                value: '#include <stdio.h>\n\nint main() {\n   return 0;\n}',
+                language: 'c',
                 theme: 'vs-light',
                 automaticLayout: true
             }
         );
-
     }
 );
 
 async function runCode() {
     const code = editor.getValue();
-    const response = await fetch(
-    "http://127.0.0.1:8000/run",
-    {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            code: editor.getValue(),
-            stdin: document.getElementById("stdin").value})
-    });
-    const data = await response.json();
-    document.getElementById("output").textContent = data.output || data.error;
+    document.getElementById("output").textContent = "Running code..."; 
+    try {
+        const response = await fetch(
+        "http://127.0.0.1:8000/run",
+        {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                code: editor.getValue(),
+                stdin: document.getElementById("stdin").value})
+        });
+        const data = await response.json();
+        document.getElementById("output").textContent = data.output || data.error;
+    } catch (err) {
+        document.getElementById("output").textContent = "Error connecting to backend: " + err;
+    }
 }
