@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <style>
-        body {
-            margin: 20px;
-        }
-        #editor {
-            height: 400px;
-            border: 1px solid black;
-        }
-        #output {
-            margin-top: 20px;
-            border: 1px solid black;
-            min-height: 100px;
-            padding: 10px;
-        }
-    </style>
+    <title>C Code Runner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@6.0.0/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@6.0.0/lib/xterm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.js"></script>
 </head>
+
 <body>
-    <h2>Online Code Runner</h2>
-    <div id="editor"></div>
-    <br>
-    <button onclick="runCode()">
-        Run
-    </button>
-    <br>
-    <h3>Input</h3>
-    <textarea id="stdin" rows="5" cols="50"></textarea>
-    <h3>Output</h3>
-    <pre id="output"></pre>
+    <div class="controls">
+        <input type="file" id="file-upload" accept=".c,.txt" style="display: none;" />
+        <button onclick="document.getElementById('file-upload').click()">Upload</button>
+        <button onclick="downloadCode()">Download</button>
+        <button id="run-btn" onclick="runCode()">Run Code</button>
+    </div>
+
+    <div class="container">
+        <div class="box editor-box">
+            <h3>Editor</h3>
+            <div id="editor"></div>
+        </div>
+        <div class="box input-box">
+            <h3>Input (stdin)</h3>
+            <textarea id="stdin"></textarea>
+        </div>
+        <div class="box output-box">
+            <h3>Output</h3>
+            <div id="terminal-container"></div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

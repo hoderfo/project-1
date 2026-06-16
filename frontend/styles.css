@@ -1,0 +1,70 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    height: 80vh;
+}
+
+.box {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-box {
+    flex: 2;
+}
+
+.input-box {
+    flex: 1;
+}
+
+.output-box {
+    flex: 1;
+}
+
+h3 {
+    margin: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#editor {
+    flex: 1;
+}
+
+textarea {
+    flex: 1;
+    margin: 0;
+    padding: 10px;
+    border: none;
+    resize: none;
+    font-family: monospace;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#terminal-container {
+    flex: 1;
+    padding: 10px;
+    background-color: #fafafa;
+    overflow: hidden;
+}
