@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+asyncpg
+redis
+docker
+pygdbmi
+bcrypt
+websockets
+sqlalchemy
+greenlet
